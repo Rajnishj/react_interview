@@ -6,8 +6,7 @@ const Todolist = () => {
     email: "",
   });
   const [users, setUsers] = useState([]);
-  const [editedUser, setEditedUser] = useState(null);
-
+const [editableId, setEditableId] = useState(null)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -16,37 +15,37 @@ const Todolist = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (editedUser !== null) {
-     const updatedUsers = users.map(user => user.id === editedUser ? {...user,...formData} : user)
-     setUsers(updatedUsers)
-     setEditedUser(null)
-     setFormData({
-        username: "",
-        email: "",
-      });
-    } else {
-      setUsers([...users, { ...formData, id: Date.now() }]);
-      setFormData({
-        username: "",
-        email: "",
-      });
-    }
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if(editableId !== null){
+    const updatedItems = users.map(user => user.id === editableId ? {...user,...formData} :user)
+    setUsers(updatedItems)
+    setEditableId(null)
+    setFormData({
+      username: "",
+      email: "",
+    });
+  }else{
+    setUsers([...users, {...formData,id:Date.now()}]);
+    setFormData({
+      username: "",
+      email: "",
+    });
+  }
 
+}
+const handleEdit  =(user) => {
+  setEditableId(user.id)
+  setFormData({
+    username: user.username,
+    email: user.email,
+  });
+}
   const handleDelete = (user) => {
     const filteredUsers = users.filter((item) => item.id !== user.id);
     setUsers(filteredUsers);
   };
 
-  const handleEdit = (user) => {
-    setEditedUser(user.id);
-    setFormData({
-      username: user.username,
-      email: user.email,
-    });
-  };
   return (
     <div className="mt-4 px-6">
       <h1 className="text-4xl">Todo List</h1>
@@ -71,7 +70,7 @@ const Todolist = () => {
           type="submit"
           disabled={formData.username === "" || formData.email === ""}
           className="bg-blue-500 text-white p-2 w-[100px] mt-4 rounded">
-          {editedUser ? "Save" : "Submit"}
+          {editableId !== null  ? "Save" : "Submit"}
         </button>
       </form>
       <div className="mt-6">

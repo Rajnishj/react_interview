@@ -1,6 +1,7 @@
 import React from "react";
 import { images } from "../../assets/assets";
-const Navbar = () => {
+import Theme from "../Theme/Theme";
+const Navbar = ({theme,toggleTheme }) => {
   return (
     <div className="bg-black h-[70px] w-full px-6 flex justify-between items-center">
       <div>
@@ -8,6 +9,9 @@ const Navbar = () => {
       </div>
       <div>
         <ul className="list-none flex gap-x-10">
+        <li>
+          <Theme theme={theme}toggleTheme={toggleTheme} />
+          </li>
           <li>
             <a href="#" className="text-white hover:text-gray-400">
               Home
