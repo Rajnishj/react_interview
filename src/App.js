@@ -8,6 +8,10 @@ import ProgressContainer from "./components/Progressbar/ProgressContainer";
 import Pagination from "./components/Pagination/Pagination";
 import RadioDropdown from "./components/Dropdown/RadioDropdown";
 import Accordion from "./components/Accordion/Accordion";
+import Carousel from "./components/Carousel/Carousel";
+import Timer from "./components/CountdownTimer/Timer";
+import Comments from "./components/NestedComments/Comments";
+import Form from "./components/FormValidation/Form";
 
 function App() {
   const [theme, setTheme] = useState("light"); // Default theme
@@ -18,12 +22,18 @@ function App() {
   return (
     <div className={`app ${theme}`}>
       <Navbar theme={theme}toggleTheme={toggleTheme}/>
+      <div className=" w-[800px] m-auto">
       <Todolist />
       <Rating />
       <ProgressContainer />
       <Pagination />
       <RadioDropdown />
       <Accordion />
+      <Carousel />
+      <Timer />
+      <Comments />
+      <Form />
+      </div>
     </div>
   );
 }

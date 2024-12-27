@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { data } from "./data";
+import { data } from "../../utils/data";
 const Pagination = () => {
   const [currentPage, setCurrentPage] = useState(1);
 

@@ -1,3 +1,4 @@
+import {images} from "../assets/assets"
 export const data = [
     {
         "userId": "bda0e5f6-5b44-4927-8354-51087c733125",
@@ -929,3 +930,86 @@ export const accordionData = [
         desc: "Node.js is an open source server environment. Node.js allows you to run JavaScript on the server. Start learning Node.js now",
       },
   ];
+
+
+export const carouselData = [
+    {
+      id: 1,
+      photo: images.flower1,
+      title: "Item 1 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
+    },
+    {
+        id: 2,
+        photo:images.flower2,
+        title: "Item 2 Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old",
+      },
+      {
+        id: 3,
+        photo:images.robot1,
+        title: "Item 3 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+      },
+      {
+        id: 4,
+        photo:images.flower4,
+        title: "Item 4 There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,",
+      },
+      {
+        id: 5,
+        photo:images.robot2,
+        title: "Item 5 The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from",
+      },
+  ];
+
+  export const comments = [
+    {
+      author: "John Doe",
+      text: "This is a top-level comment.",
+      replies: [
+        {
+          author: "Jane Smith",
+          text: "This is a reply to the top-level comment.",
+          replies: [
+            {
+              author: "Bob Johnson",
+              text: "This is a reply to the reply.",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      author: "Alice Brown",
+      text: "Another top-level comment.",
+      replies: [
+        {
+          author: "Maria Bob Johnson",
+          text: "This is a reply to the reply.",
+          replies: [
+            {
+              author: "Ajay Bob Johnson",
+              text: "This is a reply to the reply.",
+              replies: [
+                {
+                  author: "DD Bob Johnson",
+                  text: "This is a reply to the reply.",
+                },
+                {
+                  author: "ZZ Bob Johnson",
+                  text: "This is a reply to the reply.",
+                },
+              ],
+            },
+            {
+              author: "KK Bob Johnson",
+              text: "This is a reply to the reply.",
+            },
+          ],
+        },
+        {
+          author: "Bob Johnson",
+          text: "This is a reply to the reply.",
+        },
+      ],
+    },
+  ];
+  

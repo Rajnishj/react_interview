@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { accordionData } from "../Pagination/data";
+import { accordionData } from "../../utils/data";
 import { ChevronDown, ChevronUp } from "lucide-react";
 const Accordion = () => {
   const [showDetails, setShowDetails] = useState(null);
@@ -10,6 +10,7 @@ const Accordion = () => {
     <div className=" mx-6 mt-6 mb-6 w-[400px]">
       {accordionData.map((item) => (
         <div
+          key={item.id}
           onClick={() => handleShowDetails(item.id)}
           className="border-2 border-blue-400 mb-3">
           <div className="border-b-2 border-red-300 p-2 flex items-center justify-between">
