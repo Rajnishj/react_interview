@@ -1,38 +1,36 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import Todolist from "./components/TodoList/Todolist";
 import { useState } from "react";
-import Rating from "./components/StarRating/Rating";
-import ProgressContainer from "./components/Progressbar/ProgressContainer";
-import Pagination from "./components/Pagination/Pagination";
-import RadioDropdown from "./components/Dropdown/RadioDropdown";
-import Accordion from "./components/Accordion/Accordion";
-import Carousel from "./components/Carousel/Carousel";
-import Timer from "./components/CountdownTimer/Timer";
-import Comments from "./components/NestedComments/Comments";
-import Form from "./components/FormValidation/Form";
+import Home from "./pages/Home";
+import { Route, Routes } from "react-router-dom";
+import Contact from "./pages/Contact";
+import Services from "./pages/Services";
+import About from "./pages/About";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoutes from "./protectedRoutes/ProtectedRoutes";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const [theme, setTheme] = useState("light"); // Default theme
 
- const toggleTheme = () => {
-  setTheme((prev) => prev === "light" ? "dark" : "light");
- }
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
   return (
     <div className={`app ${theme}`}>
-      <Navbar theme={theme}toggleTheme={toggleTheme}/>
-      <div className=" w-[800px] m-auto">
-      <Todolist />
-      <Rating />
-      <ProgressContainer />
-      <Pagination />
-      <RadioDropdown />
-      <Accordion />
-      <Carousel />
-      <Timer />
-      <Comments />
-      <Form />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <div className=" m-auto">
+        <Routes>
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/service" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<PageNotFound />} /> 
+        </Routes>
       </div>
     </div>
   );

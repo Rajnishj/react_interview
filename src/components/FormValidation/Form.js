@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Form = () => {
-  const [formData, setFormData] = useState({
+  const initialData = {
     username: "",
     email: "",
     password: "",
-  });
-  const [errors, setErrors] = useState({});
+  };
 
+  const navigate = useNavigate()
+  const {login} = useAuth()
+  const [formData, setFormData] = useState(initialData);
+  const [errors, setErrors] = useState({});
   const handleChange = (e) => {
     const { name, value } = e.target;
+    setErrors({});
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -17,38 +23,38 @@ const Form = () => {
   };
 
   const validate = () => {
-    let validationErrors = {};
-
+    let validateErrors = {};
     if (!formData.username) {
-      validationErrors.username = "Username is required";
-    } else if (formData.username.length < 3) {
-      validationErrors.username = "Username must be at least 3 characters long";
+      validateErrors.username = "Please enter user name.";
+    } else if (formData.username.length < 6) {
+      validateErrors.username = "Username must be more than 6 character";
     }
 
     if (!formData.email) {
-      validationErrors.email = "Email is required";
+      validateErrors.email = "Please enter Email address.";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      validationErrors.email = "Email is not valid";
+      validateErrors.email = "Please Enter valid email address";
     }
 
     if (!formData.password) {
-      validationErrors.password = "Password is required";
+      validateErrors.password = "Please enter password";
     } else if (formData.password.length < 6) {
-      validationErrors.password = "Password must be at least 6 characters long";
+      validateErrors.password = "password must be of 6 character.";
     }
-
-    return validationErrors;
+    return validateErrors;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+    const errorsData = validate();
+    console.log(errorsData);
+    if (Object.keys(errorsData).length > 0) {
+      setErrors(errorsData);
     } else {
-      setErrors({});
-      console.log("Form data submitted:", formData);
-      // Handle successful form submission (e.g., send data to server)
+      console.log("Form Submitted successfully!!!!");
+      login()
+      navigate("/dashboard")
+      setFormData(initialData);
     }
   };
 
@@ -66,8 +72,8 @@ const Form = () => {
             className="w-full border border-r-amber-300 rounded-md p-2"
             placeholder="Enter username"
           />
-          {errors.username && <p className="text-red-500">{errors.username}</p>}
         </div>
+        {errors.username && <p className="text-red-800">{errors.username}</p>}
         <div className="mb-2">
           <label className="text-xl mb-2 flex">Email</label>
           <input
@@ -78,8 +84,8 @@ const Form = () => {
             className="w-full border border-r-amber-300 rounded-md p-2"
             placeholder="Enter email address"
           />
-          {errors.email && <p className="text-red-500">{errors.email}</p>}
         </div>
+        {errors.email && <p className="text-red-800">{errors.email}</p>}
         <div className="mb-2">
           <label className="text-xl mb-2 flex">Password</label>
           <input
@@ -90,12 +96,11 @@ const Form = () => {
             className="w-full border border-r-amber-300 rounded-md p-2"
             placeholder="Enter password"
           />
-          {errors.password && <p className="text-red-500">{errors.password}</p>}
         </div>
+        {errors.password && <p className="text-red-800">{errors.password}</p>}
         <button
           type="submit"
-          className="mt-2 mb-3 bg-green-300 w-[120px] p-2 rounded-md"
-        >
+          className="mt-2 mb-3 bg-green-300 w-[120px] p-2 rounded-md">
           Submit
         </button>
       </form>
