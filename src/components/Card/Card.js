@@ -7,11 +7,14 @@ const Card = ({ item }) => {
         <img
           src={item?.url}
           alt={item?.author}
-          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+          className="absolute inset-0 h-[250px] w-full object-cover"
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-      <h3 className="z-10 mt-3 text-3xl font-bold text-white">{item?.author}</h3>
+      <h3 className="z-10 mt-3 text-3xl font-bold text-white">
+        {item?.author}
+      </h3>
       <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
         {String(`${item?.nsfw}`)}
       </div>

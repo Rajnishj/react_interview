@@ -11,6 +11,9 @@ import Comments from "../components/NestedComments/Comments";
 import Form from "../components/FormValidation/Form";
 import Checkbox from "../components/ChexboxDropdown/Checkbox";
 import { useAuth } from '../context/AuthContext';
+import { images } from '../assets/assets';
+import DynamicForm from '../components/DynamicForm/DynamicForm';
+import DropdownSearch from '../components/DropdownSearch/DropdownSearch';
 const Home = () => {
   const {isInitialized} = useAuth()
   console.log(isInitialized)
@@ -25,8 +28,10 @@ const Home = () => {
       <Carousel />
       <Timer />
       <Comments /> */}
-      <Form />
+      <DynamicForm />
+      {/* <img src={images.bigImage} alt='house' loading='eager'/> */}
       {/* <Checkbox /> */}
+          {/* <DropdownSearch /> */}
     </div>
   )
 }

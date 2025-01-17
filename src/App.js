@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoutes from "./protectedRoutes/ProtectedRoutes";
 import PageNotFound from "./pages/PageNotFound";
+import DropdownSearch from "./components/DropdownSearch/DropdownSearch";
 
 function App() {
   const [theme, setTheme] = useState("light"); // Default theme
